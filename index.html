@@ -3,17 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>AI Voice & Text Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Corrected stylesheet link from styles.css to style.css -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="background-overlay"></div>
 
-        <h1>Your AI Assistant</h1>
-        <p>Press the button and say a command (e.g., "Open YouTube")</p>
-        <button id="listen-btn" class="btn">🎙️ Start
-            Listening</button>
-    </div>
+    <main class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="bot-avatar">
+                <span class="avatar-icon">🤖</span>
+                <span class="pulse-ring"></span>
+            </div>
+            <h1>AI Assistant</h1>
+            <p class="subtitle">Speak or write your command to navigate and search the web</p>
+        </header>
+
+        <!-- Voice & Status Controls -->
+        <div class="controls-section">
+            <button id="listen-btn" class="btn btn-voice" type="button" aria-label="Start Voice Listening">
+                <span class="btn-icon">🎙️</span>
+                <span id="btn-label">Start Listening</span>
+            </button>
+            <div id="status-badge" class="status-badge">Ready</div>
+        </div>
+
+        <!-- Text Input Form ("Write it") -->
+        <form id="text-form" class="text-input-form">
+            <input 
+                type="text" 
+                id="text-input" 
+                placeholder="Or type a command here (e.g. 'time', 'open youtube')..." 
+                autocomplete="off"
+            >
+            <button type="submit" id="send-btn" class="btn btn-send" title="Send Command">
+                <span>➤</span>
+            </button>
+        </form>
+
+        <!-- Dynamic Output & Transcription ("Make it write") -->
+        <section class="output-section">
+            <div class="output-card user-card">
+                <div class="card-header">
+                    <span class="card-icon">👤</span>
+                    <span class="card-title">You said / wrote:</span>
+                </div>
+                <p id="transcript-text" class="card-body">Waiting for input...</p>
+            </div>
+
+            <div class="output-card ai-card">
+                <div class="card-header">
+                    <span class="card-icon">⚡</span>
+                    <span class="card-title">Assistant Response:</span>
+                </div>
+                <p id="response-text" class="card-body">Hello! Click "Start Listening" or type a command above.</p>
+                <div id="action-links" class="action-links"></div>
+            </div>
+        </section>
+
+        <!-- Quick Suggestions -->
+        <div class="quick-commands">
+            <span class="quick-title">Quick commands:</span>
+            <div class="chips-container">
+                <button type="button" class="chip" data-cmd="open youtube">Open YouTube</button>
+                <button type="button" class="chip" data-cmd="what time is it">What time is it?</button>
+                <button type="button" class="chip" data-cmd="today's date">Today's date</button>
+                <button type="button" class="chip" data-cmd="open google">Open Google</button>
+                <button type="button" class="chip" data-cmd="open whatsapp">WhatsApp</button>
+            </div>
+        </div>
+
+        <!-- Browser Compatibility Banner -->
+        <div id="browser-warning" class="warning-banner" style="display: none;">
+            ⚠️ Voice recognition requires Google Chrome, Microsoft Edge, or Safari on HTTPS. You can still type commands above!
+        </div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
